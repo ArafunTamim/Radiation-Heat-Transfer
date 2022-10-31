@@ -1,0 +1,36 @@
+a = 1;
+b_1 = .25;
+b_2 = .75;
+c = 2;
+
+N = 100000;
+ray = 0;
+hits = 0;
+
+while ray<N
+    ray = ray + 1;
+    theta = asin(sqrt(rand));
+    phi = 2 * pi * rand;
+    x0 = rand * c;
+    y0 = rand * a;
+    z0 = 0;
+
+    L = - y0/(sin(phi)*sin(theta));
+    xi = x0 + L*cos(phi)*sin(theta);
+    zi = z0 + L*cos(theta);
+
+    if (xi < 0)
+        hit = 0;
+    elseif (xi > c)
+        hit = 0;
+    elseif (zi < b_1)
+        hit = 0;
+    elseif (zi > (b_1 + b_2))
+        hit = 0;
+    else
+        hit = 1;
+    end
+    
+    hits = hits +hit;
+end
+F = hits/N
